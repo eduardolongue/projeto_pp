@@ -4,7 +4,7 @@ const taskrouter = require("./routes/taskRouter");
 
 const app = express();
 
-app.set("port", process.env.PORT || 3306);
+app.set("port", process.env.PORT || 3006);
 
 const cors = require("cors");
 app.use(express.json());
