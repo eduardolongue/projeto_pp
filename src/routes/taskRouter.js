@@ -1,8 +1,8 @@
 const {Router} = require("express");
 const router = Router();
 
-const { storeTask } = require("../controller/taskController");
+const { storeConteudo } = require("../controller/conteudoController");
 
-router.post("/store/task", storeTask);
+router.post("/store/conteudo", storeConteudo);
 
 module.exports = router;
