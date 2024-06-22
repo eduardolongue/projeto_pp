@@ -1,12 +1,9 @@
 :root {
-    --clr-laranja: #e76f51;
-    --clr-laranjaclaro: #f4a261;
-    --clr-amarelo: #e9c46a;
-    --clr-verdeclaro: #2a9d8f;
-    --clr-verdeescuro: #287271;
-    --clr-azul: #264653;
-    --clr-principal: #ffffff;
-    --clr-background: #f0f0f0; /* Light grey background */
+    --clr-azul-escuro: #34495e;
+    --clr-azul-claro: #5dade2;
+    --clr-laranja: #e67e22;
+    --clr-principal: #ffffff; /* branco */
+    --clr-background: #ecf0f1; /* cinza claro */
 }
 
 * {
@@ -21,10 +18,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(background.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-color: var(--clr-verdeclaro);
+    background: var(--clr-background); /* fundo cinza claro */
+    color: var(--clr-azul-escuro);
 }
 
 header {
@@ -36,19 +31,21 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #287271;
+    background-color: var(--clr-azul-escuro);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* para garantir que fique sobre o conteúdo */
 }
 
 .logo {
     font-size: 2em;
-    color: black;
+    color: var(--clr-principal);
     user-select: none;
 }
 
 .navegador a {
     position: relative;
     font-size: 1.1em;
-    color: black;
+    color: var(--clr-principal);
     text-decoration: none;
     font-weight: 500;
     margin-left: 40px;
@@ -61,7 +58,7 @@ header {
     bottom: -6px;
     width: 100%;
     height: 3px;
-    background: var(--clr-azul);
+    background: var(--clr-laranja);
     border-radius: 5px;
     transform-origin: right;
     transform: scaleX(0);
@@ -77,62 +74,84 @@ header {
     width: 130px;
     height: 50px;
     background: transparent;
-    border: 2px solid black;
+    border: 2px solid var(--clr-principal);
     outline: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 1.1em;
-    color: black;
+    color: var(--clr-principal);
     font-weight: 500;
     margin-left: 20px;
     transition: .5s;
+    position: relative;
+    overflow: hidden; /* Adicionado para esconder o ::after fora do botão */
 }
 
-.botao_login_popup:hover, .botao_voltar_inicio:hover {
-    background: var(--clr-azul);
-    color: var(--clr-verdeclaro);
+.botao_login_popup::after, .botao_voltar_inicio::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0; /* Apenas na parte inferior */
+    width: 100%;
+    height: 3px; /* Ajustado para a altura desejada */
+    background: var(--clr-laranja);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .5s;
 }
 
-.foms_caixa_login {
-    border: 2px solid black;
+.botao_login_popup:hover::after, .botao_voltar_inicio:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
-.teste {
-    border: 2px solid black;
+.botao_voltar_inicio a {
+    color: var(--clr-principal);
+    text-decoration: none;
 }
 
 .bloco_card {
-    background-color: var(--clr-azul);
+    background-color: var(--clr-azul-escuro);
     color: var(--clr-principal);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 10vw;
-    height: 15vh;
-    border-radius: 2vw;
-    padding: 2%;
-    margin: 0 2px;
-    border: 2px solid var(--clr-verdeescuro);
+    width: 200px; /* ajustado para um valor fixo */
+    height: 150px; /* ajustado para um valor fixo */
+    border-radius: 10px; /* bordas arredondadas */
+    padding: 20px;
+    margin: 20px;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* sombra suave */
 }
 
 .bloco_card:hover {
-    background-color: var(--clr-verdeescuro);
-    color: var(--clr-verdeclaro);
+    background-color: var(--clr-azul-claro);
+    color: var(--clr-azul-escuro);
+    transform: translateY(-5px); /* levantado um pouco ao passar o mouse */
+}
+
+.bloco_card h2 {
+    font-size: 1.5em; /* aumentei um pouco o tamanho da fonte */
+    margin: 0;
+    padding: 0;
+    text-align: center; /* centraliza o texto */
+    word-wrap: break-word;
+    line-height: 1.2; /* ajusta o espaçamento entre linhas */
+    color: var(--clr-principal); /* cor do texto dentro dos cards */
 }
 
 .organizar {
     display: flex;
     justify-content: center;
-    flex-direction: row;
     flex-wrap: wrap;
     padding: 20px;
 }
 
 main.conteudo {
-    margin: 100px auto;
+    margin: 100px auto; /* centralizado verticalmente */
     padding: 20px;
     max-width: 800px;
     background: var(--clr-principal);
@@ -145,7 +164,7 @@ main.conteudo {
 }
 
 .conteudo h1, .conteudo h2 {
-    color: var(--clr-azul);
+    color: var(--clr-azul-escuro);
     margin-bottom: 10px;
 }
 
@@ -161,35 +180,4 @@ main.conteudo {
 
 .conteudo ul li {
     margin-bottom: 10px;
-}
-
-/* Styling for the "Voltar ao Início" button */
-header button a {
-    display: flex;
-    justify-content: center; /* Centralizar horizontalmente */
-    align-items: center; /* Centralizar verticalmente */
-    width: 100%;
-    height: 100%;
-    color: inherit;
-    text-decoration: none;
-}
-
-
-header button {
-    width: 150px;
-    height: 50px;
-    background: var(--clr-verdeescuro);
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1em;
-    color: var(--clr-principal);
-    font-weight: 500;
-    margin-left: 20px;
-    transition: .5s;
-}
-
-header button:hover {
-    color: var(--clr-principal);
 }
